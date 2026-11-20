@@ -68,7 +68,7 @@ password:
   require-digit: true
   history-keep: 3
   # 初始密码（admin 新建账号时默认密码）
-  initial: Init@123456
+  initial: Init@YOUR_DB_PASSWORD
   # 启动时是否强制把种子账号（admin/hr01/emp01）的密码重置为默认值
   #   true：测试/演示环境友好，改坏了重启即恢复
   #   false：生产环境必须设为 false，避免改密后被悄悄重置

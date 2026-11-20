@@ -70,7 +70,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="初始密码">
-          <el-input v-model="form.initialPassword" placeholder="留空使用系统默认 Init@123456" />
+          <el-input v-model="form.initialPassword" placeholder="留空使用系统默认 Init@YOUR_DB_PASSWORD" />
         </el-form-item>
       </el-form>
       <template #footer>

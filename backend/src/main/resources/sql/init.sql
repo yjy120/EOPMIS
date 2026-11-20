@@ -157,14 +157,14 @@ INSERT INTO sys_role_menu (role_id, menu_id) VALUES
 (3, 2), (3, 21), (3, 22);
 
 -- 默认账号（密码均为 BCrypt 密文）
---   admin / Admin@123
---   hr01  / Hr@123456
---   emp01 / Emp@123456
+--   admin / YOUR_ADMIN_PWD
+--   hr01  / Hr@YOUR_DB_PASSWORD
+--   emp01 / Emp@YOUR_DB_PASSWORD
 -- BCrypt（cost=10）由 PasswordUtil.hash() 生成，SQL 中为占位示例
 -- 实际使用时执行下列步骤生成密文：
 --   1) 启动项目后，调用任意"重置密码"接口重置即可
 --   或
---   2) 在 Java 端执行 BCrypt.hashpw("Admin@123", BCrypt.gensalt(10)) 写入
+--   2) 在 Java 端执行 BCrypt.hashpw("YOUR_ADMIN_PWD", BCrypt.gensalt(10)) 写入
 -- 下面是常见的测试密文样例（不同 BCrypt 版本前缀不同，BCrypt 默认 $2a$10$）：
 INSERT INTO sys_user (username, real_name, password, status, role_id, fail_count, create_time, update_time) VALUES
 ('admin', '系统管理员', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 1, 1, 0, NOW(), NOW()),
@@ -172,7 +172,7 @@ INSERT INTO sys_user (username, real_name, password, status, role_id, fail_count
 ('emp01', '普通员工1',  '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 1, 3, 0, NOW(), NOW());
 
 -- 启动项目后，必须用登录接口先把这些账号的密码改写为正确 BCrypt，
--- 或者直接用 BCryptPasswordEncoder.matches("Admin@123", "<上面密文>") 验证
+-- 或者直接用 BCryptPasswordEncoder.matches("YOUR_ADMIN_PWD", "<上面密文>") 验证
 -- 若测试登录失败，请使用 README 中"重置 admin 密码"小节的 SQL 命令
 
 -- ============================================================

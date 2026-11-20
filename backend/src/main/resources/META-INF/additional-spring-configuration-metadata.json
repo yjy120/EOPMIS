@@ -70,7 +70,7 @@
       "name": "password.initial",
       "type": "java.lang.String",
       "description": "新建账号默认初始密码",
-      "defaultValue": "Init@123456"
+      "defaultValue": "Init@YOUR_DB_PASSWORD"
     },
     {
       "name": "password.force-reset-on-startup",

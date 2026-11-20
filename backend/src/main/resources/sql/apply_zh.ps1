@@ -1,5 +1,5 @@
 $mysql = 'C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe'
-$args  = @('--default-character-set=utf8mb4', '-h127.0.0.1', '-P3306', '-uroot', '-p123456', 'eopmis')
+$args  = @('--default-character-set=utf8mb4', '-h127.0.0.1', '-P3306', '-uroot', '-pYOUR_DB_PASSWORD', 'eopmis')
 
 # Pair: (where clause column, where value, new Chinese value)
 $updates = @(

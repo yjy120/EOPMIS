@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 启动时种子数据修正器
  *   - 角色：存在即跳过
- *   - 账号：存在则校验密码是否可被 "Admin@123" 验证，不通过则重置为该值
+ *   - 账号：存在则校验密码是否可被 "YOUR_ADMIN_PWD" 验证，不通过则重置为该值
  *           （方便演示/测试环境；生产应去掉）
  *   - 不会插入重复数据
  */
@@ -38,7 +38,7 @@ public class DataInitRunner implements CommandLineRunner {
     @Value("${password.force-reset-on-startup:true}")
     private boolean forceResetOnStartup;
 
-    private static final String DEFAULT_ADMIN_PWD = "Admin@123";
+    private static final String DEFAULT_ADMIN_PWD = "YOUR_ADMIN_PWD";
 
     @Override
     public void run(String... args) {
@@ -55,19 +55,19 @@ public class DataInitRunner implements CommandLineRunner {
         // employeeId 暂传 null：sys_employee 表尚未建立（UC-007 范围），
         // 待员工档案功能落地后由 SQL 或 UserAdminServiceImpl 显式绑定
         ensureUser("admin", "杨佳莹", adminRole.getId(), null,  DEFAULT_ADMIN_PWD);
-        ensureUser("hr01",  "于悦",   hrRole.getId(),    null,  "Hr@123456");
-        ensureUser("emp01", "王岩",   empRole.getId(),   null,  "Emp@123456");
+        ensureUser("hr01",  "于悦",   hrRole.getId(),    null,  "Hr@YOUR_DB_PASSWORD");
+        ensureUser("emp01", "王岩",   empRole.getId(),   null,  "Emp@YOUR_DB_PASSWORD");
         // 演示用普通员工账号（UC-007~017 联调数据），每人独立密码
-        ensureUser("emp02", "李明华", empRole.getId(), null, "Emp02@123456");
-        ensureUser("emp03", "陈思雨", empRole.getId(), null, "Emp03@123456");
-        ensureUser("emp04", "王建国", empRole.getId(), null, "Emp04@123456");
-        ensureUser("emp05", "刘小芳", empRole.getId(), null, "Emp05@123456");
-        ensureUser("emp06", "赵敏",   empRole.getId(), null, "Emp06@123456");
-        ensureUser("emp07", "孙丽",   empRole.getId(), null, "Emp07@123456");
-        ensureUser("emp08", "周强",   empRole.getId(), null, "Emp08@123456");
-        ensureUser("emp09", "吴磊",   empRole.getId(), null, "Emp09@123456");
+        ensureUser("emp02", "李明华", empRole.getId(), null, "Emp02@YOUR_DB_PASSWORD");
+        ensureUser("emp03", "陈思雨", empRole.getId(), null, "Emp03@YOUR_DB_PASSWORD");
+        ensureUser("emp04", "王建国", empRole.getId(), null, "Emp04@YOUR_DB_PASSWORD");
+        ensureUser("emp05", "刘小芳", empRole.getId(), null, "Emp05@YOUR_DB_PASSWORD");
+        ensureUser("emp06", "赵敏",   empRole.getId(), null, "Emp06@YOUR_DB_PASSWORD");
+        ensureUser("emp07", "孙丽",   empRole.getId(), null, "Emp07@YOUR_DB_PASSWORD");
+        ensureUser("emp08", "周强",   empRole.getId(), null, "Emp08@YOUR_DB_PASSWORD");
+        ensureUser("emp09", "吴磊",   empRole.getId(), null, "Emp09@YOUR_DB_PASSWORD");
 
-        log.info("[DataInitRunner] 种子数据准备完毕。可用账号：admin/{} | hr01/Hr@123456 | emp01~emp09（每人独立密码，格式 Emp0X@123456）（forceResetOnStartup={}）",
+        log.info("[DataInitRunner] 种子数据准备完毕。可用账号：admin/{} | hr01/Hr@YOUR_DB_PASSWORD | emp01~emp09（每人独立密码，格式 Emp0X@YOUR_DB_PASSWORD）（forceResetOnStartup={}）",
                 DEFAULT_ADMIN_PWD, forceResetOnStartup);
     }
 
