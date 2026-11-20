@@ -69,7 +69,7 @@
 > 任务：完成 eopmis 数据库的建库建表、初始化数据落地与验证（本周只初始化公共模块所需数据）。
 > 要求：
 > 1. 在本地 MySQL 8.0 中创建数据库 `eopmis`（utf8mb4 / utf8mb4_unicode_ci / InnoDB）。
-> 2. 将《数据库设计文档》§四的 21 张表建表 SQL、§五的初始化数据（三类内置角色 ADMIN/HR/EMPLOYEE、admin 初始账号 admin/admin123 的 BCrypt 哈希、ATTENDANCE_STATUS/LEAVE_TYPE/CONTRACT_TYPE/FAMILY_RELATION 字典、顶级部门"公司总部"）整理为工程脚本文件：`backend/src/main/resources/sql/schema.sql`（建表）与 `data.sql`（初始化数据），并实际执行成功。
+> 2. 将《数据库设计文档》§四的 21 张表建表 SQL、§五的初始化数据（三类内置角色 ADMIN/HR/EMPLOYEE、admin 初始账号 admin/YOUR_ADMIN_PWD 的 BCrypt 哈希、ATTENDANCE_STATUS/LEAVE_TYPE/CONTRACT_TYPE/FAMILY_RELATION 字典、顶级部门"公司总部"）整理为工程脚本文件：`backend/src/main/resources/sql/schema.sql`（建表）与 `data.sql`（初始化数据），并实际执行成功。
 > 3. **补充本周菜单权限种子数据**（《数据库设计文档》§五未包含，需新增插入 `sys_permission` 与 `sys_role_permission`）：
 >    - 目录"系统管理"（type=1，path=/system，icon=setting，sort=10）；
 >    - 其下菜单：账号管理（type=2，path=/system/account，code=`system:account`）、角色管理（path=/system/role，code=`system:role`）、操作日志（path=/system/audit，code=`system:audit`）；
@@ -317,7 +317,7 @@
 > 4. 登录成功按 roleCode 跳转：ADMIN → /home（系统管理工作台）；HR/EMPLOYEE → /home（本周仅首页占位）。
 > 5. Axios 拦截器联通：401 自动清登录态跳登录页；登录失败（账号或密码错误/锁定/停用）在登录页 ElMessage 展示后端 message。
 > 6. 本周不实现注册页；不实现人事业务页面。
-> 验收：浏览器完成 admin/admin123 登录→跳转首页；错误密码有提示；刷新页面保持登录态；退出后回到登录页。
+> 验收：浏览器完成 admin/YOUR_ADMIN_PWD 登录→跳转首页；错误密码有提示；刷新页面保持登录态；退出后回到登录页。
 
 ---
 
@@ -442,7 +442,7 @@
 >
 > 任务：对本周公共模块进行端到端联调与冒烟测试（本任务只做验证与缺陷修复，不新增功能、不设计新内容）。
 > 要求：
-> 1. 后端启动（8080）、前端启动（5173，代理 /api）、MySQL eopmis 库就绪，使用 W02 种子数据（admin/admin123）。
+> 1. 后端启动（8080）、前端启动（5173，代理 /api）、MySQL eopmis 库就绪，使用 W02 种子数据（admin/YOUR_ADMIN_PWD）。
 > 2. 在 Apifox/Postman 中建立本周接口集合（API-001~API-019 已实现部分），逐条验证：登录成功/失败/锁定/停用、登出、user-info、菜单树、角色 CRUD、权限树/授权、账号 CRUD/停用/重置密码、修改密码全分支、日志分页、字典查询；导出集合文件放入 `docs/test/`（或项目约定目录）。
 > 3. 浏览器端走查 PRD 用例主成功场景：
 >    - UC-001 登录（含 5 次错误锁定 15 分钟、停用账号提示）；
